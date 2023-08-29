@@ -1,0 +1,200 @@
+﻿@page "/"
+
+@using allLeagues.Shared.DTOS;
+
+<!-- LOGO HEADER -->
+@*<div id="logo-header">
+    <img id="logo-img" src="/Images/league.png" alt="">
+</div>*@
+<!-- LOGO HEADER -->
+<!-- HEADER -->
+@*Start Write here*@
+
+@*End Writerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr*@
+<div>
+    @*Cards*@
+
+    <MudGrid>
+        <MudItem xs="12" sm="12" md="12">
+            <MudText Typo="Typo.h6" Style="font-weight:bold">Premier League Statistics</MudText>
+        </MudItem>
+    </MudGrid>
+    <MudItem xs="12" sm="12" md="12">
+        <MudGrid Spacing="2">
+            <MudItem xs="12" sm="12" md="6">
+                <MudPaper Class="px-7 py-3"
+                          Style="color:white;background-color:#515E6E">
+
+                    <MudStack Row
+                              AlignItems="AlignItems.Center"
+                              Spacing="4">
+                        <MudIcon Icon="@Icons.Filled.PlayForWork" Style="font-size:65px" />
+                        <MudStack Spacing="0">
+                            <MudText Typo="Typo.h3">@PalyedGames</MudText>
+                            <MudText Typo="Typo.h6">Played Games</MudText>
+                        </MudStack>
+                    </MudStack>
+                    </MudPaper>
+                    </MudItem>
+                    <MudItem xs="12" sm="12" md="6">
+                    <MudPaper Class="px-7 py-3"
+                          Style="color:white;background-color:orange">
+
+                    <MudStack Row
+                              AlignItems="AlignItems.Center"
+                              Spacing="4">
+                        <MudIcon Icon="@Icons.Filled.PlaylistAddCheck" Style="font-size:65px;" />
+                        <MudStack Spacing="0">
+                            <MudText Typo="Typo.h3">@numberofGoals</MudText>
+                            <MudText Typo="Typo.h6">Number Of Goals</MudText>
+                        </MudStack>
+                    </MudStack>
+                    </MudPaper>
+                    </MudItem>
+                    <MudItem xs="12" sm="12" md="6">
+                    <MudPaper Class="px-7 py-3"
+                          Style="color:white;background-color:cyan">
+
+                    <MudStack Row
+                              AlignItems="AlignItems.Center"
+                              Spacing="4">
+                        <MudIcon Icon="@Icons.Filled.MeetingRoom" Style="font-size:65px" />
+                        <MudStack Spacing="0">
+                            <MudText Typo="Typo.h3">@points</MudText>
+                            <MudText Typo="Typo.h6">Sum Of Points</MudText>
+                        </MudStack>
+                    </MudStack>
+                    </MudPaper>
+                    </MudItem>
+                    <MudItem xs="12" sm="12" md="6">
+
+                    <MudPaper Class="px-7 py-3"
+                          Style="color:white;background-color:#37873e">
+
+                    <MudStack Row
+                              AlignItems="AlignItems.Center"
+                              Spacing="4">
+                        <MudIcon Icon="fas fa-house-user" Style="font-size:65px" />
+                        <MudStack Spacing="0">
+                            <MudText Typo="Typo.h3">@tableDtos.Count</MudText>
+                            <MudText Typo="Typo.h6">Number Of Teams</MudText>
+                        </MudStack>
+                    </MudStack>
+                    </MudPaper>
+                    </MudItem>
+
+                    @*                    <MudItem xs="12" sm="12" md="12">
+            <MudPaper Class="px-7 py-3"
+            Style="color:white;background-color:blue">
+
+            <MudStack Row
+            AlignItems="AlignItems.Center"
+            Spacing="4">
+            <MudIcon Icon="fas fa-house-user" Style="font-size:65px" />
+            <MudStack Spacing="0">
+            <MudText Typo="Typo.h3">@OneScorer.player?.name</MudText>
+            <MudText Typo="Typo.h6">Championship top scorer</MudText>
+            </MudStack>
+            </MudStack>
+            </MudPaper>
+            </MudItem>*@
+
+                    </MudGrid>
+                    </MudItem>
+                    <MudPaper Class="px-7 py-3 mt-2"
+              Style="color:white;background-color:mediumvioletred">
+
+                    <MudStack Row
+                  AlignItems="AlignItems.Center"
+                  Spacing="4">
+            <MudIcon Icon="fas fa-house-user" Style="font-size:65px" />
+            <MudStack Spacing="0" Row>
+                <MudImage Width="50" Height="50" Src="@premierleague.season?.winner?.crest" Alt="" Class="rounded-lg"></MudImage>
+                <MudText Typo="Typo.h3">@premierleague.season?.winner?.name</MudText>
+                <MudImage  Width="50" Height="50" Src="/cup.png" Alt="" Class="rounded-lg ml-5"></MudImage>
+            </MudStack>
+        </MudStack>
+    </MudPaper>
+    <div class="d-flex align-center justify-space-between mt-2">
+        <MudText Align="Align.Start" Typo="Typo.h5" dir="rtl">Premier League standings</MudText>
+    </div>
+    @if (tableDtos!=null)
+    {
+        <MudTable Items="@tableDtos"
+              T="TableDto"
+              Dense="true"
+              Hover="true"
+              Bordered="true"
+              Striped="true"
+              Class="mt-2"
+              Style="margin-bottom:20px">
+            <NoRecordsContent>
+                <MudText>No Data Found</MudText>
+            </NoRecordsContent>
+
+            <HeaderContent>
+                <MudTh>team</MudTh>
+                <MudTh>playedGames</MudTh>
+                <MudTh>W</MudTh>
+                <MudTh>L</MudTh>
+                <MudTh>D</MudTh>
+                <MudTh>GF</MudTh>
+                <MudTh>GA</MudTh>
+                <MudTh>GD</MudTh>
+                <MudTh>Pts</MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd>
+                    <MudStack>
+                        <MudImage Width="50" Height="50" Src="@context.team?.crest" Alt="" Class="rounded-lg"></MudImage>
+                        <MudText Typo="Typo.body1">@context.team?.name</MudText>
+                    </MudStack>
+                </MudTd>
+                <MudTd>@context.playedGames</MudTd>
+                <MudTd>@context.won</MudTd>
+                <MudTd>@context.lost</MudTd>
+                <MudTd>@context.draw</MudTd>
+                <MudTd>@context.goalsFor</MudTd>
+                <MudTd>@context.goalsAgainst</MudTd>
+                <MudTd>@context.goalDifference</MudTd>
+                <MudTd>@context.points</MudTd>
+
+
+            </RowTemplate>
+
+        </MudTable>
+    }
+
+                 
+
+</div>
+
+<style>
+    .mud-table-striped .mud-table-container .mud-table-root .mud-table-body .mud-table-row:nth-of-type(even) {
+        background-color: #F1F1F1;
+    }
+
+        .mud-table-striped .mud-table-container .mud-table-root .mud-table-body .mud-table-row:nth-of-type(even) td {
+            color: #000
+        }
+
+        .mud-table-striped .mud-table-container .mud-table-root .mud-table-body .mud-table-row:nth-of-type(even):hover {
+            background-color: #F1F1F1;
+        }
+
+    .mud-table-root .mud-table-body:last-child .mud-table-row:last-child .mud-table-cell {
+        border-bottom: 1px solid #ffffff1e;
+    }
+
+    .mud-table-cell {
+        border: 1px solid #ffffff1e;
+    }
+
+    #info_button {
+        background: #17a2b8;
+    }
+
+        #info_button span.mud-button-label {
+            color: #fff;
+        }
+</style>
